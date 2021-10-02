@@ -23,6 +23,7 @@ function LogIn() {
             setLoading(true)
             const { data } = await apis.login({ email: email.toLocaleLowerCase(), password });
             await localStorage.setItem('AUTH_TOKEN', data.token)
+            console.log('Success')
             return
         }
         catch(err) {
