@@ -63,6 +63,10 @@ function LogIn() {
                         )}
                         </Formik>
                     </div>
+                    <br></br>
+                    <Link to = '/SignUp'>
+                        <div className = 'text-center'>Do not have an account? Sign up</div>
+                    </Link>
                 </div>
             </div>
         </div>
