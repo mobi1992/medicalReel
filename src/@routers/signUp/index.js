@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import moment from 'moment'
 import {apis} from '../../@services'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
-
+import { password_show_hide , confirmPassword_show_hide} from '../../@components'
 const initialValues = {
     name : '',
     email : '',
@@ -74,16 +74,32 @@ const SignUp = () => {
                         {errors.email && touched.email ? <div className = 'text-danger text-center'>{errors.email} <br></br></div> : null}
                     
                         <div className = 'form-group'>
-                            <label htmlFor = 'password'>Password</label>
-                            <input className = 'form-control' type = 'password' id = 'password' name = 'password' value = {values.password} onChange = {handleChange} onBlur = {handleBlur}></input>
+                            <label>Password</label>
+                                <div class="input-group">
+                                    <input name="password" type="password" class="form-control" id="password" value = {values.password} onChange = {handleChange} onBlur = {handleBlur}/>
+                                    <div class="input-group-append">
+                                        <span className = 'input-group-text' onClick = {password_show_hide}> 
+                                        <i class="fas fa-eye" id="show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
                         </div>
-                        {errors.password && touched.password ? <div className = 'text-danger text-center'>{errors.password} <br></br></div> : null}
+                        {errors.password && touched.password ? <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br></div> : null}
 
                         <div className = 'form-group'>
-                            <label htmlFor = 'confirmPassword'>Confirm Password</label>
-                            <input className = 'form-control' type = 'password' id = 'confirmPassword' name = 'confirmPassword' value = {values.confirmPassword} onChange = {handleChange} onBlur = {handleBlur}></input>
+                            <label>Password</label>
+                                <div class="input-group">
+                                    <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" value = {values.confirmPassword} onChange = {handleChange} onBlur = {handleBlur}/>
+                                    <div class="input-group-append">
+                                        <span className = 'input-group-text' onClick = {confirmPassword_show_hide}> 
+                                        <i class="fas fa-eye" id="show_eye2"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye2"></i>
+                                        </span>
+                                    </div>
+                                </div>
                         </div>
-                        {errors.confirmPassword && touched.confirmPassword ? <div className = 'text-danger text-center'>{errors.confirmPassword} <br></br></div> : null}
+                        {errors.confirmPassword && touched.confirmPassword ? <div><div className = 'text-danger text-center'>{errors.confirmPassword}</div> <br></br></div> : null}
 
                         <div className = 'form-group'>
                             <label htmlFor = 'dateOfBirth'>Select Date of Birth</label>

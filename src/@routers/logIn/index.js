@@ -3,6 +3,7 @@ import {Formik} from 'formik'
 import * as Yup from 'yup'
 import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom'
 import {apis} from '../../@services'
+import { password_show_hide } from '../../@components'
 const initialValues = {
     email : '',
     password : '',
@@ -17,22 +18,6 @@ const validationSchema = Yup.object({
     password : Yup.string().min('8').required('Please enter a password with min 8 characters')
 })
 const LogIn = () => {
-
-    const password_show_hide = () => {
-        var x = document.getElementById('password')
-        var show_eye = document.getElementById("show_eye");
-        var hide_eye = document.getElementById("hide_eye");
-        hide_eye.classList.remove("d-none");
-        if (x.type === "password") {
-          x.type = "text";
-          show_eye.style.display = "none";
-          hide_eye.style.display = "block";
-        } else {
-          x.type = "password";
-          show_eye.style.display = "block";
-          hide_eye.style.display = "none";
-        }
-      }
 
     const history = useHistory()
     const [loading, setLoading] = useState(false);
@@ -67,11 +52,11 @@ const LogIn = () => {
                             <label htmlFor = 'email'>Email Address</label>
                             <input className = 'form-control' type = 'text' id = 'email' name = 'email' value = {values.email} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.email && touched.email ? <div className = 'text-danger text-center'>{errors.email} <br></br></div> : null}
+                        {errors.email && touched.email ? <div> <div className = 'text-danger text-center'>{errors.email}</div> <br></br></div> : null}
                         <div className = 'form-group'>
                             <label>Password</label>
                                 <div class="input-group">
-                                    <input name="password" type="password" class="input form-control" id="password" value = {values.password} onChange = {handleChange} onBlur = {handleBlur}/>
+                                    <input name="password" type="password" class="form-control" id="password" value = {values.password} onChange = {handleChange} onBlur = {handleBlur}/>
                                     <div class="input-group-append">
                                         <span className = 'input-group-text' onClick = {password_show_hide}> 
                                         <i class="fas fa-eye" id="show_eye"></i>
@@ -80,7 +65,7 @@ const LogIn = () => {
                                     </div>
                                 </div>
                         </div>
-                        {errors.email && touched.email ? <div className = 'text-danger text-center'>{errors.email} <br></br></div> : null}
+                        {errors.password && touched.password ? <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br> </div> : null}
                         <button className = 'btn btn-dark' type = 'submit'>Login</button>
                         </form>
                         )}
