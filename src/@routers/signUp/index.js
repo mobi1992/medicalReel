@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
     confirmPassword : Yup.string().required('Please confirm your password').oneOf([Yup.ref('password'), null], 'Passwords do not match'),
     dateOfBirth : Yup.string().required('Please select your date of birth')
 })
-function SignUp() {
+const SignUp = () => {
     const [loading, setLoading] = useState(false)
     const signUp = async ({name, email, password, dateOfBirth}) => {
         try {
@@ -65,29 +65,25 @@ function SignUp() {
                             <label htmlFor = 'name'>Name</label>
                             <input className = 'form-control' type = 'text' id = 'name' name = 'name' value = {values.name} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.name && touched.name ? <div className = 'text-danger text-center'>{errors.name}</div> : null}
-                        {errors.name && touched.name ? <br></br> : null}
+                        {errors.name && touched.name ? <div className = 'text-danger text-center'>{errors.name} <br></br></div> : null}
 
                         <div className = 'form-group'>
                             <label htmlFor = 'email'>Email Address</label>
                             <input className = 'form-control' type = 'text' id = 'email' name = 'email' value = {values.email} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.email && touched.email ? <div className = 'text-danger text-center'>{errors.email}</div> : null}
-                        {errors.email && touched.email ? <br></br> : null}
-
+                        {errors.email && touched.email ? <div className = 'text-danger text-center'>{errors.email} <br></br></div> : null}
+                    
                         <div className = 'form-group'>
                             <label htmlFor = 'password'>Password</label>
-                            <input className = 'form-control' type = 'text' id = 'password' name = 'password' value = {values.password} onChange = {handleChange} onBlur = {handleBlur}></input>
+                            <input className = 'form-control' type = 'password' id = 'password' name = 'password' value = {values.password} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.password && touched.password ? <div className = 'text-danger text-center'>{errors.password}</div> : null}
-                        {errors.password && touched.password ? <br></br> : null}
+                        {errors.password && touched.password ? <div className = 'text-danger text-center'>{errors.password} <br></br></div> : null}
 
                         <div className = 'form-group'>
                             <label htmlFor = 'confirmPassword'>Confirm Password</label>
-                            <input className = 'form-control' type = 'text' id = 'confirmPassword' name = 'confirmPassword' value = {values.confirmPassword} onChange = {handleChange} onBlur = {handleBlur}></input>
+                            <input className = 'form-control' type = 'password' id = 'confirmPassword' name = 'confirmPassword' value = {values.confirmPassword} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.confirmPassword && touched.confirmPassword ? <div className = 'text-danger text-center'>{errors.confirmPassword}</div> : null}
-                        {errors.confirmPassword && touched.confirmPassword ? <br></br> : null}
+                        {errors.confirmPassword && touched.confirmPassword ? <div className = 'text-danger text-center'>{errors.confirmPassword} <br></br></div> : null}
 
                         <div className = 'form-group'>
                             <label htmlFor = 'dateOfBirth'>Select Date of Birth</label>
