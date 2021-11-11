@@ -16,4 +16,9 @@ export const apis = {
             "Content-Type": "multipart/form-data; "
         }
     }),
+    getSharingList: async () => axios.get("sharing", { headers: { Authorization: "Bearer " + await localStorage.getItem("AUTH_TOKEN") } }),
+    getUsers: async (name) => axios.get("users/find/" + name, { headers: { Authorization: "Bearer " + await localStorage.getItem("AUTH_TOKEN") } }),
+    allowSharing: async (id) => axios.post("sharing/" + id, null, { headers: { Authorization: "Bearer " + await localStorage.getItem("AUTH_TOKEN") } }),
+    deleteSharing: async (id) => axios.delete("sharing/" + id, { headers: { Authorization: "Bearer " + await localStorage.getItem("AUTH_TOKEN") } }),
+    getSharedWithMe: async () => axios.get("users/shared-with-me", { headers: { Authorization: "Bearer " + await localStorage.getItem("AUTH_TOKEN") } }),
 }

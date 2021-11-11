@@ -2,9 +2,10 @@ import React, {useState} from 'react'
 import {Formik} from 'formik'
 import * as Yup from 'yup'
 import moment from 'moment'
-import {apis} from '../../@services'
+import {apis, routePaths} from '../../@services'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import { password_show_hide , confirmPassword_show_hide} from '../../@components'
+
 const initialValues = {
     name : '',
     email : '',
@@ -52,7 +53,7 @@ const SignUp = () => {
         <div className = 'container'>
             <div className = 'row'>
                 <div className = 'col-lg-4 col-md-4 mx-auto'>
-                    <Link to = '/'>
+                    <Link to = {routePaths.login}>
                         <div className = 'mt-4 text-center'>Already have an account? Log in</div>
                     </Link>
                     <div className = 'mt-4 card card-body'>
@@ -65,13 +66,13 @@ const SignUp = () => {
                             <label htmlFor = 'name'>Name</label>
                             <input className = 'form-control' type = 'text' id = 'name' name = 'name' value = {values.name} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.name && touched.name ? <div className = 'text-danger text-center'>{errors.name} <br></br></div> : null}
+                        {(errors.name && touched.name) && <div className = 'text-danger text-center'>{errors.name} <br></br></div>}
 
                         <div className = 'form-group'>
                             <label htmlFor = 'email'>Email Address</label>
                             <input className = 'form-control' type = 'text' id = 'email' name = 'email' value = {values.email} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.email && touched.email ? <div className = 'text-danger text-center'>{errors.email} <br></br></div> : null}
+                        {(errors.email && touched.email) && <div className = 'text-danger text-center'>{errors.email} <br></br></div>}
                     
                         <div className = 'form-group'>
                             <label>Password</label>
@@ -85,7 +86,7 @@ const SignUp = () => {
                                     </div>
                                 </div>
                         </div>
-                        {errors.password && touched.password ? <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br></div> : null}
+                        {(errors.password && touched.password) && <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br></div>}
 
                         <div className = 'form-group'>
                             <label>Password</label>
@@ -99,16 +100,18 @@ const SignUp = () => {
                                     </div>
                                 </div>
                         </div>
-                        {errors.confirmPassword && touched.confirmPassword ? <div><div className = 'text-danger text-center'>{errors.confirmPassword}</div> <br></br></div> : null}
+                        {(errors.confirmPassword && touched.confirmPassword) && <div><div className = 'text-danger text-center'>{errors.confirmPassword}</div> <br></br></div>}
 
                         <div className = 'form-group'>
                             <label htmlFor = 'dateOfBirth'>Select Date of Birth</label>
                             {/* To disable future dates the max property is used */}
                             <input className = 'form-control' type = 'date' id = 'dateOfBirth' name = 'dateOfBirth' value = {values.dateOfBirth} onChange = {handleChange} max={moment().format("YYYY-MM-DD")}></input>
                         </div>
-                        {errors.dateOfBirth && touched.dateOfBirth ? <div className = 'text-danger text-center'>{errors.dateOfBirth}</div> : null}
+                        {(errors.dateOfBirth && touched.dateOfBirth) && <div className = 'text-danger text-center'>{errors.dateOfBirth}</div>}
                         <div className = 'mt-4'></div>
-                        <button className = 'btn btn-dark' type = 'submit'>Sign Up</button>
+                        <div className = 'row justify-content-center align-items-center'>
+                            <button className = 'btn btn-dark' type = 'submit'>Sign Up</button>
+                        </div>
                         </form>
                         )}
                         </Formik>

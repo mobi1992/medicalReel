@@ -4,14 +4,11 @@ import * as Yup from 'yup'
 import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom'
 import {apis} from '../../@services'
 import { password_show_hide } from '../../@components'
+import {routePaths} from '../../@services'
 const initialValues = {
     email : '',
     password : '',
 }
-// const logIn = values => {
-//     console.log('Form data', values)
-// }
-
 
 const validationSchema = Yup.object({
     email : Yup.string().email('Invalid Email Format').required('This Field is Required'),
@@ -27,7 +24,7 @@ const LogIn = () => {
             const { data } = await apis.login({ email: email.toLocaleLowerCase(), password });
             await localStorage.setItem('AUTH_TOKEN', data.token)
             console.log('Success');
-            history.push('/HomeScreen')
+            history.push(routePaths.homescreen)
             return
         }
         catch(err) {
@@ -52,7 +49,7 @@ const LogIn = () => {
                             <label htmlFor = 'email'>Email Address</label>
                             <input className = 'form-control' type = 'text' id = 'email' name = 'email' value = {values.email} onChange = {handleChange} onBlur = {handleBlur}></input>
                         </div>
-                        {errors.email && touched.email ? <div> <div className = 'text-danger text-center'>{errors.email}</div> <br></br></div> : null}
+                        {(errors.email && touched.email) && <div> <div className = 'text-danger text-center'>{errors.email}</div> <br></br></div>}
                         <div className = 'form-group'>
                             <label>Password</label>
                                 <div class="input-group">
@@ -65,14 +62,16 @@ const LogIn = () => {
                                     </div>
                                 </div>
                         </div>
-                        {errors.password && touched.password ? <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br> </div> : null}
-                        <button className = 'btn btn-dark' type = 'submit'>Login</button>
+                        {(errors.password && touched.password) && <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br> </div>}
+                        <div className = 'row justify-content-center align-items-center'>
+                            <button className = 'btn btn-dark' type = 'submit'>Login</button>
+                        </div>
                         </form>
                         )}
                         </Formik>
                     </div>
                     <br></br>
-                    <Link to = '/SignUp'>
+                    <Link to = {routePaths.signup}>
                         <div className = 'text-center'>Do not have an account? Sign up</div>
                     </Link>
                 </div>
