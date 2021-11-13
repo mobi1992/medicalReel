@@ -1,0 +1,34 @@
+@media screen and (max-width: 299px) {
+    .des {
+        font-size: small;
+    }
+    .des-heading {
+        font-size: medium;
+        font-weight: bold;
+    }
+  }
+  
+  @media screen and (min-width: 300px) and (max-width: 449px) {
+    .des {
+        font-size: small;
+    }
+    .des-heading {
+        font-size: medium;
+        font-weight: bold;
+    }
+  }
+
+  .des:hover {
+      color : blue;
+      cursor: default;
+  }
+
+  .des:active {
+    color : blue;
+    cursor: default;
+}
+
+.des:focus {
+    color : blue;
+    cursor: default;
+}
