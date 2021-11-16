@@ -3,24 +3,7 @@ import { apis, routePaths } from '../../@services'
 import './index.css'
 import NavBar from '../navbar'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom'
-const SharedWithMe = () => {
-    const history = useHistory()
-    const [sharedWithMeList, setSharedWithMeList] = useState([])
-    const [loading, setLoading] = useState(true)
-    const getSharedWithMeList = async () => {
-        try {
-            const { data } = await apis.getSharedWithMe()
-            console.log(data)
-            setSharedWithMeList(data)
-        }
-        catch (e) {
-            console.log(e)
-        }
-        finally {
-            setLoading(false)
-        }
-    }
-
+const SharedWithMe = ({sharedWithMeList, loading, getSharedWithMeList}) => {
     useEffect(() => {
         getSharedWithMeList()
     }, [])
@@ -37,12 +20,17 @@ const SharedWithMe = () => {
                                 <hr></hr></div> : <div>
                                 {
                                     sharedWithMeList.map(list => {
-                                        return (<div className='des' onClick={() => history.push({ pathname: `/HomeScreen/${list.name}`, params: list })}>
+                                        return (
+                                        <>
+                                        <Link to = {`/HomeScreen/${list.name}`}>
+                                        <div className='des'>
                                             <div style={{ float: 'left' }}>{list.email}</div>
                                             <div style={{ float: 'right' }}>{list.name}</div>
                                             <br></br>
                                             <hr></hr>
-                                        </div>)
+                                        </div>
+                                        </Link>
+                                        </>)
                                     })
                                 } </div>
                             }
@@ -53,5 +41,4 @@ const SharedWithMe = () => {
         </div>
     )
 }
-
 export default SharedWithMe

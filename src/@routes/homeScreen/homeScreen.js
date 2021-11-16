@@ -1,46 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams } from 'react-router-dom'
-import { apis, routePaths } from '../../@services'
+import React from 'react'
 import DocItem from './doc-item'
 import './index.css'
-const Home = ({data1}) => {
-    const history = useHistory()
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
-    const [page, setPage] = useState(0);
-    // const data2 = history.location.params
-    // console.log(data2)
-    console.log(data1)
-    useEffect(() => {
-        getHomeData();
-    }, []);
-
-    const getHomeData = async () => {
-        try {
-            setLoading(true)
-            if (data1 !== undefined){
-                const { data: userDocs } = await apis.getUserDoc({ page, userId: data1.id });
-                console.log(userDocs);
-                setData(userDocs);
-            }
-            else {
-                const { data: userDocs } = await apis.getUserDoc({ page })
-                console.log(userDocs);
-                setData(userDocs);
-            }
-            
-        } catch (e) {
-            setLoading(true)
-            if (e?.response?.data?.statusCode === 401) {
-                await localStorage.removeItem("AUTH_TOKEN");
-                history.push(routePaths.login)
-                return;
-            }
-        } finally {
-            setLoading(false);
-        }
-    }
-
+const Home = ({data, loading}) => {
+    
     return (
         <div>
             {data.length === 0 && !loading ?

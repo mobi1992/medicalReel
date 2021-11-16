@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://143.110.189.47:3200/"
+axios.defaults.baseURL = "http://161.35.28.53:3300/"
 // axios.defaults.baseURL = "http://192.168.2.122:3200/"
 // axios.defaults.baseURL = "http://localhost:3200/"
 export const apis = {

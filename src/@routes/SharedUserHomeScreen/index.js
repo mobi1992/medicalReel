@@ -1,13 +1,16 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom'
-import HomeScreen from '../homeScreen'
-const SharedUserHomeScreen = () => {
-    const history = useHistory()
-    const data1 = history.location.params
-    console.log(data1)
+import React, {useState, useEffect} from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams } from 'react-router-dom'
+import { apis, routePaths } from '../../@services'
+import Home from './homeScreen'
+const SharedUserHomeScreen = ({sharedWithMeList, getSharedWithMeList}) => {
+    const {name} = useParams()
+    let paramData = sharedWithMeList.filter(list => list.name === name).map(list => list.id)
+    useEffect(() => {
+        getSharedWithMeList()
+    }, []);
     return (
         <div>
-            <HomeScreen data1 = {data1}/>
+            <Home paramData = {paramData}/>
         </div>
     )
 }

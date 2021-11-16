@@ -3,7 +3,7 @@ import {Formik} from 'formik'
 import * as Yup from 'yup'
 import moment from 'moment'
 import {apis, routePaths} from '../../@services'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom'
 import { password_show_hide , confirmPassword_show_hide} from '../../@components'
 
 const initialValues = {
@@ -27,6 +27,7 @@ const validationSchema = Yup.object({
 })
 const SignUp = () => {
     const [loading, setLoading] = useState(false)
+    const history = useHistory()
     const signUp = async ({name, email, password, dateOfBirth}) => {
         try {
             setLoading(true)
@@ -36,6 +37,7 @@ const SignUp = () => {
             }
             const { data } = await apis.login({ email: email.toLocaleLowerCase(), password });
             await localStorage.setItem("AUTH_TOKEN", data.token)
+            history.push(routePaths.login)
             console.log('success')
         }
         catch(err) {

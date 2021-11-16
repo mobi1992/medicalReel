@@ -12,8 +12,24 @@ import MySharingSettings from './mySharingSettings'
 import SharedWithMe from './sharedWithMe'
 import Navbar from './navbar'
 import SharedUserHomeScreen from './SharedUserHomeScreen'
+import {apis} from '../@services'
 const MainApp = () => {
     const [token, setToken] = useState()
+    const [sharedWithMeList, setSharedWithMeList] = useState([])
+    const [loading, setLoading] = useState(true)
+    const getSharedWithMeList = async () => {
+        try {
+            const { data } = await apis.getSharedWithMe()
+            console.log(data)
+            setSharedWithMeList(data)
+        }
+        catch (e) {
+            console.log(e)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
     useEffect(() => {
         const tkn = localStorage.getItem('AUTH_TOKEN')
         setToken(tkn)
@@ -35,8 +51,8 @@ const MainApp = () => {
                     <Route path={routePaths.addrecord} exact component={AddRecord} />
                     <Route path={routePaths.myprofilesettings} exact component={MyProfileSettings} />
                     <Route path={routePaths.mysharingsettings} exact component={MySharingSettings} />
-                    <Route path={routePaths.sharedwithme} exact component={SharedWithMe} />
-                    <Route path='/HomeScreen/:name' exact component={SharedUserHomeScreen} />
+                    <Route path={routePaths.sharedwithme} exact render = {() => <SharedWithMe sharedWithMeList = {sharedWithMeList} loading = {loading} getSharedWithMeList = {getSharedWithMeList}/>} />
+                    <Route path='/HomeScreen/:name' exact render = {() => <SharedUserHomeScreen sharedWithMeList = {sharedWithMeList} getSharedWithMeList = {getSharedWithMeList}/>} />
                 </Switch>
             </Router>
         </div>
