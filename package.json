@@ -25,7 +25,8 @@
     "save": "^2.4.0",
     "src": "^1.1.2",
     "web-vitals": "^1.1.2",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "node":"^16.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
