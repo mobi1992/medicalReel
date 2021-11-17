@@ -2,6 +2,9 @@
   "name": "react_redux_demo",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "17.x"
+  },
   "homepage": "http://mobi1992.github.io",
   "dependencies": {
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
@@ -26,9 +29,6 @@
     "src": "^1.1.2",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
-  },
-  "engines": {
-    "node": ">=16.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
