@@ -3,9 +3,7 @@ import React, { useState } from 'react'
 import './index.css'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import OpenPic from './openPic'
-import OpenCarouselPic from './openCarouselPic'
-import {getAge} from '../../@components'
+import { getAge } from '../../@components'
 const carouselProp = {
     showStatus: false,
     useKeyboardArrows: true,
@@ -32,8 +30,6 @@ const carouselProp = {
     },
 }
 const DocItem = ({ item }) => {
-    const [crsPic, showCrsPic] = useState(false)
-    const [pic, showPic] = useState(false)
     const [showMore, setShowMore] = useState(false);
     const dob = item.user.dateOfBirth
 
@@ -44,14 +40,16 @@ const DocItem = ({ item }) => {
                     <div className='row justify-content-center align-items-center'>
                         <div className='mt-3 col-lg-8 col-md-8'>
                             <div className='image-wrapper'>
-                                <img className='home-img' src={item.files[0]} onClick={() => showPic(true)}></img>
+                                <a href={item.files[0]}>
+                                    <img className='home-img' src={item.files[0]}></img>
+                                </a>
                             </div>
                             <div className='row main align-items-center'>
                                 <div className='mt-3 col-12'>
-                                    <h5 className = 'des'>Description: </h5>
-                                    {showMore ? <div className = 'responsive-content-des'>{item.description}</div> : <div className = 'responsive-content-des'>{item.description.substring(0, 50)}</div>}
+                                    <h5 className='des'>Description: </h5>
+                                    {showMore ? <div className='responsive-content-des'>{item.description}</div> : <div className='responsive-content-des'>{item.description.substring(0, 50)}</div>}
                                     {(item.description.length > 50) &&
-                                        <p className='ref' onClick={() => setShowMore(!showMore)}>{showMore ? <div className = 'responsive-content-des'> Show less</div> : <div className = 'responsive-content-des'> ...Show more</div>}</p>}
+                                        <p className='ref' onClick={() => setShowMore(!showMore)}>{showMore ? <div className='responsive-content-des'> Show less</div> : <div className='responsive-content-des'> ...Show more</div>}</p>}
                                 </div>
                             </div>
                             <div className='row main'>
@@ -64,9 +62,6 @@ const DocItem = ({ item }) => {
                             </div>
                         </div>
                     </div>
-                    {
-                        pic ? <OpenPic onClosePic={() => showPic(false)} item={item} /> : null
-                    }
                 </div>
             )
         }
@@ -89,10 +84,10 @@ const DocItem = ({ item }) => {
                             </Carousel>
                             <div className='row main align-items-center'>
                                 <div className='mt-3 col-12'>
-                                    <h5 className = 'des'>Description: </h5>
-                                    {showMore ? <div className = 'responsive-content-des'>{item.description}</div> : <div className = 'responsive-content-des'>{item.description.substring(0, 50)}</div>}
+                                    <h5 className='des'>Description: </h5>
+                                    {showMore ? <div className='responsive-content-des'>{item.description}</div> : <div className='responsive-content-des'>{item.description.substring(0, 50)}</div>}
                                     {(item.description.length > 50) &&
-                                        <p className='ref' onClick={() => setShowMore(!showMore)}>{showMore ? <div className = 'responsive-content-des'> Show less</div> : <div className = 'responsive-content-des'> ...Show more</div>}</p>}
+                                        <p className='ref' onClick={() => setShowMore(!showMore)}>{showMore ? <div className='responsive-content-des'> Show less</div> : <div className='responsive-content-des'> ...Show more</div>}</p>}
                                 </div>
                             </div>
                             <div className='row main'>
@@ -105,9 +100,6 @@ const DocItem = ({ item }) => {
                             </div>
                         </div>
                     </div>
-                    {/* {
-                        crs_pic ? <OpenCarouselPic onCloseCrsPic={onCloseCrsPic} item={item} /> : null
-                    } */}
                 </div>
             )
         }
