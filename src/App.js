@@ -5,7 +5,7 @@ import './App.css';
 // import Routes from './Components/Routes'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import MainApp from './@routes';
-import Navbar from './@routes/navbar';
+
 function App() {
   return (
       // <Provider store = {store}>

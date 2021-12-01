@@ -1,18 +1,20 @@
-import React, {useState} from 'react'
-import {Formik} from 'formik'
+import React, { useState } from 'react'
+import { Formik } from 'formik'
 import * as Yup from 'yup'
-import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom'
-import {apis} from '../../@services'
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom'
+import { apis } from '../../@services'
 import { password_show_hide } from '../../@components'
-import {routePaths} from '../../@services'
+import { routePaths } from '../../@services'
+import { Container, Col, Row, Card, Form, InputGroup, Button } from 'react-bootstrap'
+import img from '../../@assets/images/img.png'
 const initialValues = {
-    email : '',
-    password : '',
+    email: '',
+    password: '',
 }
 
 const validationSchema = Yup.object({
-    email : Yup.string().email('Invalid Email Format').required('This Field is Required'),
-    password : Yup.string().min('8').required('Please enter a password with min 8 characters')
+    email: Yup.string().email('Invalid Email Format').required('This Field is Required'),
+    password: Yup.string().min('8').required('Please enter a password with min 8 characters')
 })
 const LogIn = () => {
 
@@ -27,7 +29,7 @@ const LogIn = () => {
             history.push(routePaths.homescreen)
             return
         }
-        catch(err) {
+        catch (err) {
             console.log('Error', err)
             alert('Email or password is invalid')
         }
@@ -36,47 +38,50 @@ const LogIn = () => {
         }
     }
     return (
-        <div className = 'container'>
-            <div className = 'row'>
-                <div className = 'col-lg-4 col-md-4 mx-auto'>
-                    <div className = 'mt-5 card card-body'>
-                        <Formik initialValues = {initialValues}
-                        onSubmit = {logInUser}
-                        validationSchema = {validationSchema}>
-                        {({ handleSubmit, handleChange, handleBlur, values, errors, touched }) => (
-                        <form onSubmit = {handleSubmit}>
-                        <div className = 'form-group'>
-                            <label htmlFor = 'email'>Email Address</label>
-                            <input className = 'form-control' type = 'text' id = 'email' name = 'email' value = {values.email} onChange = {handleChange} onBlur = {handleBlur}></input>
-                        </div>
-                        {(errors.email && touched.email) && <div> <div className = 'text-danger text-center'>{errors.email}</div> <br></br></div>}
-                        <div className = 'form-group'>
-                            <label>Password</label>
-                                <div class="input-group">
-                                    <input name="password" type="password" class="form-control" id="password" value = {values.password} onChange = {handleChange} onBlur = {handleBlur}/>
-                                    <div class="input-group-append">
-                                        <span className = 'input-group-text' onClick = {password_show_hide}> 
-                                        <i class="fas fa-eye" id="show_eye"></i>
-                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                        </div>
-                        {(errors.password && touched.password) && <div><div className = 'text-danger text-center'>{errors.password}</div> <br></br> </div>}
-                        <div className = 'row justify-content-center align-items-center'>
-                            <button className = 'btn btn-dark' type = 'submit'>Login</button>
-                        </div>
-                        </form>
+        <Container>
+            <Row className='justify-content-center align-items-center'> <Col lg='4' md='4' mx='auto'>
+                <Card className='mt-5'> <Card.Body>
+                    <Row className='justify-content-center align-items-center'>
+                        <img className='card card-img border-0 justify-content-center' style={{ height: '50%', width: '50%' }} src={img} />
+                    </Row>
+                    <Formik initialValues={initialValues}
+                        onSubmit={logInUser}
+                        validationSchema={validationSchema}>
+                        {({ handleSubmit, handleChange, handleBlur, errors, touched }) => (
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group className='mb-3'>
+                                    <Form.Label>Email Address</Form.Label>
+                                    <Form.Control name='email' type='email' id='email' placeholder='Enter Email' onChange={handleChange} onBlur={handleBlur}></Form.Control>
+                                </Form.Group>
+                                {(errors.email && touched.email) && <div> <div className='text-danger text-center'>{errors.email}</div> <br></br></div>}
+                                <Form.Group>
+                                    <Form.Label>Password</Form.Label>
+                                    <InputGroup>
+                                        <Form.Control name="password" type="password" class="form-control" id="password" onChange={handleChange} onBlur={handleBlur} />
+                                        <InputGroup.Append>
+                                            <InputGroup.Text onClick={password_show_hide}>
+                                                <i class="fas fa-eye" id="show_eye"></i>
+                                                <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                            </InputGroup.Text>
+                                        </InputGroup.Append>
+                                    </InputGroup>
+                                </Form.Group>
+                                {(errors.password && touched.password) && <div><div className='text-danger text-center'>{errors.password}</div> <br></br> </div>}
+                                <Row className='justify-content-center'>
+                                    <Button variant='dark' type='submit'>Login</Button>
+                                </Row>
+                            </Form>
                         )}
-                        </Formik>
-                    </div>
-                    <br></br>
-                    <Link to = {routePaths.signup}>
-                        <div className = 'text-center'>Do not have an account? Sign up</div>
-                    </Link>
-                </div>
-            </div>
-        </div>
+                    </Formik>
+                </Card.Body>
+                </Card>
+                <br></br>
+                <Link to={routePaths.signup}>
+                    <div className='text-center'>Do not have an account? Sign up</div>
+                </Link>
+            </Col>
+            </Row>
+        </Container>
     )
 }
 
