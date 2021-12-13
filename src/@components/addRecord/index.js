@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 // import { Carousel } from 'react-responsive-carousel'
 import { Formik } from 'formik'
-import { apis } from '../../@services'
+import { apis, routePaths } from '../../@services'
 import * as Yup from 'yup'
 // import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './index.css'
@@ -10,7 +10,6 @@ import { SideBar } from '../../@components'
 import { Container, Row, Col, Card, Form, Button, Carousel, Modal } from 'react-bootstrap'
 const AddRecordModal = ({ show, setShow }) => {
     let refToButton = React.createRef()
-    
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
@@ -73,6 +72,7 @@ const AddRecordModal = ({ show, setShow }) => {
             setLoading(true)
             const { data } = await apis.createUserDoc(formData);
             console.log('success')
+            window.location.reload();
         }
         catch (err) {
             console.log(err)
@@ -82,7 +82,7 @@ const AddRecordModal = ({ show, setShow }) => {
         }
     }
     return (
-        <Modal show={show} onHide={() => setShow(false)}>
+        <Modal className = 'mt-5' show={show} onHide={() => setShow(false)}>
             <Modal.Header closeButton>
                 <Modal.Title>Choose From Your System</Modal.Title>
             </Modal.Header>

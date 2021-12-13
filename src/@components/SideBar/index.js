@@ -9,9 +9,14 @@ import logo from '../../@assets/images/logo.png'
 import './index.css'
 import AddRecordModal from '../addRecord'
 const SideBar = ({children}) => {
+    const history = useHistory()
     const [collapsedSidebar, setCollapsedSidebar] = useState(false);
     const [hiddenSidebar, setHiddenSidebar] = useState(false);
     const [show, setShow] = useState(false)
+    const logout = async () => {
+        await localStorage.removeItem("AUTH_TOKEN");
+        history.push(routePaths.login);
+    }
     return (
         <Row>
             <ProSidebar breakPoint="md" toggled={hiddenSidebar} collapsed={collapsedSidebar} image="https://www.wptunnel.com/wp-content/uploads/2021/10/wptunnel-medical-wallpaper.jpg" onToggle={() => setHiddenSidebar(!hiddenSidebar)}>
@@ -45,8 +50,8 @@ const SideBar = ({children}) => {
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter style = {{textAlign:'center'}}>
-                    <div className = 'mt-3 mb-3'>
-                    <a href=''>
+                    <div onClick = {logout} className = 'mt-3 mb-3'>
+                    <a href={routePaths.login}>
                     <span>
                         <i class="fa fa-power-off" aria-hidden="true"></i>
                     </span>
