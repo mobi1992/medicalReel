@@ -39,7 +39,7 @@ const LogIn = () => {
     }
     return (
         <Container>
-            <Row className='justify-content-center align-items-center'> <Col lg='4' md='4' mx='auto'>
+            <Row className='justify-content-center align-items-center'> <Col lg='6' md='8' mx='auto'>
                 <Card className='mt-5'> <Card.Body>
                     <Row className='justify-content-center align-items-center'>
                         <img className='card card-img border-0 justify-content-center' style={{ height: '50%', width: '50%' }} src={img} />

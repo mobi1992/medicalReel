@@ -1,0 +1,51 @@
+.pos-fixed {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+  .pos-rlv {
+      position: relative;
+  }
+
+  @media (max-width: 576px) {
+    .responsive-content-des {
+      font-size: 5vw;
+    }
+  }
+    .image-wrapper {
+      position: relative;
+      padding-top: 56.2%;
+    }
+    
+    .home-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-control-prev {
+      opacity: 1;
+      font-size : 120%
+    }
+
+    .carousel-control-next {
+      opacity: 1;
+      font-size : 120%
+    }
+
+    .carousel-indicators li {
+      background-color: white;
+      opacity : 1;
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+    }
+    
+    .carousel-indicators li.active {
+      background-color: black;
+    }
+    

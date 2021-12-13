@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import LogIn from './logIn'
 import SignUp from './signUp'
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
-// import HomeScreen from './homeScreen'
+import HomeScreen from './homeScreen'
 // import Settings from './settings'
 // import AddRecord from './addRecord'
 import { routePaths } from '../@services'
@@ -41,12 +41,12 @@ const MainApp = () => {
         <div>
             <Router>
                 <Switch>
-                    {/* <Route exact path="/">
+                    <Route exact path="/">
                         {token ? <Redirect to={routePaths.homescreen} /> : <Redirect to={routePaths.login} />}
-                    </Route> */}
+                    </Route>
                     <Route path={routePaths.login} exact component={LogIn} />
                     <Route path={routePaths.signup} exact component={SignUp} />
-                    {/* <Route path={routePaths.homescreen} exact component={HomeScreen} /> */}
+                    <Route path={routePaths.homescreen} exact component={HomeScreen} />
                     {/* <Route path={routePaths.setting} exact component={Settings} /> */}
                     {/* <Route path={routePaths.addrecord} exact component={AddRecord} /> */}
                     {/* <Route path={routePaths.myprofilesettings} exact component={MyProfileSettings} /> */}

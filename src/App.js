@@ -7,10 +7,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import MainApp from './@routes';
 
 function App() {
-  return (
-      // <Provider store = {store}>
-      //   <Routes />
-      // </Provider>
+  return ( 
       <div className = 'App'>
         <MainApp />
       </div>

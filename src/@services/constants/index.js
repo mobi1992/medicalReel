@@ -3,7 +3,7 @@ export const routePaths = {
     signup: '/SignUp',
     homescreen: '/HomeScreen',
     setting: '/Settings',
-    addrecord: '/AddRecord',
+    // addrecord: '/AddRecord',
     mysharingsettings: '/MySharingSettings',
     sharedwithme: '/SharedWithMe',
     myprofilesettings : '/MyProfileSettings'

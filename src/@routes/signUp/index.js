@@ -54,7 +54,7 @@ const SignUp = () => {
         }
     }
     return (
-        <Container> <Row className='justify-content-center align-items-center'> <Col lg='4' md='4' mx='auto'>
+        <Container> <Row className='justify-content-center align-items-center'> <Col lg='6' md='8' mx='auto'>
             <Link to={routePaths.login}>
                 <div className='mt-4 text-center'>Already have an account? Log in</div>
             </Link>

@@ -1,8 +1,10 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://161.35.28.53:3300/"
-// axios.defaults.baseURL = "http://192.168.2.122:3200/"
+// axios.defaults.baseURL = "http://app.vitalcharts.org/"
+//  axios.defaults.baseURL = "http://192.168.2.122:3200/"
 // axios.defaults.baseURL = "http://localhost:3200/"
+//axios.defaults.baseURL = "http://localhost:3200/"
+axios.defaults.baseURL = "http://3.16.111.217:3200"
 export const apis = {
     login: ({ email, password }) => axios.post("auth/login", { email, password }),
     signup: ({ name, email, password, dateOfBirth }) => axios.post("auth/register", { name, email, password, dateOfBirth }),
