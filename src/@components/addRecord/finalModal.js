@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button, Row} from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 const FinalModal = ({finalModal, setFinalModal, setShow}) => {
     const handleClose = () => {
@@ -7,7 +7,7 @@ const FinalModal = ({finalModal, setFinalModal, setShow}) => {
         setFinalModal(false)
     }
     return ReactDOM.createPortal (
-        <div className = 'row justify-content-center align-items-center' style = {{
+        <Row className = 'justify-content-center align-items-center' style = {{
             position: 'fixed',
             top : '0px',
             bottom : '0px',
@@ -32,7 +32,7 @@ const FinalModal = ({finalModal, setFinalModal, setShow}) => {
           </Button>
         </Modal.Footer>
       </Modal>
-      </div>,
+      </Row>,
       document.getElementById("portal-root")
     )
 }
