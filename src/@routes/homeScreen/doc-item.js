@@ -46,7 +46,7 @@ const DocItem = ({ item }) => {
             return (
                 <Container>
                     <Row className='justify-content-center align-items-center'>
-                        <Col lg='8' md='8' className='mt-3'>
+                        <Col lg='8' className='mt-3'>
                             <div className='image-wrapper'>
                                 <img className='home-img' src={item.files[0]} onClick={() => showPic(true)}></img>
                             </div>
@@ -77,7 +77,7 @@ const DocItem = ({ item }) => {
             return (
                 <Container className='container'>
                     <Row className='justify-content-center align-items-center'>
-                        <Col lg='8' md='8' className='mt-3'>
+                        <Col lg='8' className='mt-3'>
                             <Carousel nextIcon={nextIcon()} prevIcon={prevIcon()} indicators={false} interval={3000} activeIndex={index} onSelect={handleSelect}>
                                 {
                                     item.files.map(file => {

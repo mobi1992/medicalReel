@@ -12,13 +12,16 @@ const SideBar = ({children}) => {
     const history = useHistory()
     const [collapsedSidebar, setCollapsedSidebar] = useState(false);
     const [hiddenSidebar, setHiddenSidebar] = useState(false);
+    // const [show, setShow] = useState(false)
     const [show, setShow] = useState(false)
     const logout = async () => {
         await localStorage.removeItem("AUTH_TOKEN");
         history.push(routePaths.login);
     }
     return (
-        <Row>
+        <>
+        <Row className="sidebar p-0 m-0">
+        <div className = 'sidebar'>
             <ProSidebar breakPoint="md" toggled={hiddenSidebar} collapsed={collapsedSidebar} image="https://www.wptunnel.com/wp-content/uploads/2021/10/wptunnel-medical-wallpaper.jpg" onToggle={() => setHiddenSidebar(!hiddenSidebar)}>
                 {!collapsedSidebar && <SidebarHeader>
                     <Row className="p-5 m-0 justify-content-center">
@@ -32,7 +35,7 @@ const SideBar = ({children}) => {
                                 Home
                             </Link>
                         </MenuItem>
-                        <MenuItem onClick = {() => setShow(true)} icon={<span> <i className='fas fa-plus-square'></i></span>}>
+                        <MenuItem onClick = {() => setShow(!show)} icon={<span> <i className='fas fa-plus-square'></i></span>}>
                                 Add Record
                         </MenuItem>
                         <SubMenu title='Settings' icon={<span> <i className='fas fa-cog'></i></span>}>
@@ -47,6 +50,21 @@ const SideBar = ({children}) => {
                                 </Link>
                             </MenuItem>
                         </SubMenu>
+                        {/* <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem>
+                        <MenuItem></MenuItem> */}
+
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter style = {{textAlign:'center'}}>
@@ -60,6 +78,7 @@ const SideBar = ({children}) => {
                     </div>
                 </SidebarFooter>
             </ProSidebar>
+            </div>
             <Col className='m-0 p-0 text-left'>
                 <Navbar className = 'navbar-color'>
                     {/* Collapsed display on big screens (bigger than md), no collapsed display on small screens (smaller than md) */}
@@ -77,9 +96,12 @@ const SideBar = ({children}) => {
                     {children}
                 </Col>
             </Col>
-            <AddRecordModal show = {show} setShow = {setShow}/>
+            {show && <AddRecordModal show = {show} setShow = {setShow}/>}
         </Row>
+        </>
     )
 }
 
 export default SideBar
+
+
